@@ -1,7 +1,8 @@
 version: '3'
 
 
-${CONTAINER_NAME}:
+services:
+  php-dev:
   container_name: ${CONTAINER_NAME}
   restart: unless-stopped
   image: chialab/php-dev:7.2-apache
@@ -15,19 +16,19 @@ ${CONTAINER_NAME}:
     LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
     ENV: dev
 
-${CONTAINER_NAME}.mysql:
-  container_name: ${CONTAINER_NAME}.mysql
-  restart: unless-stopped
-  image: mariadb
-  volumes:
-    - ${DATA_PATH}/data/mysql:/var/lib/mysql
-  environment:
-    MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-    MYSQL_DATABASE: ${MYSQL_DATABASE}
-    MYSQL_USER: ${MYSQL_USER}
-    MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+  mysql:
+    container_name: ${CONTAINER_NAME}.mysql
+    restart: unless-stopped
+    image: mariadb
+    volumes:
+      - ${DATA_PATH}/data/mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
 
-networks:
-    default:
-       external:
-         name: ${NETWORK}
+  networks:
+      default:
+         external:
+           name: ${NETWORK}
