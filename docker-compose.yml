@@ -3,6 +3,7 @@ version: '3'
 
 services:
   php-dev:
+<<<<<<< HEAD
   container_name: ${CONTAINER_NAME}
   restart: unless-stopped
   image: chialab/php-dev:7.2-apache
@@ -15,6 +16,20 @@ services:
     LETSENCRYPT_HOST: ${DOMAINS}
     LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
     ENV: dev
+=======
+    container_name: ${CONTAINER_NAME}
+    restart: unless-stopped
+    image: chialab/php-dev:7.2-apache
+    volumes:
+      - ${DATA_PATH}/data/000-default.conf:/etc/apache2/sites-available/000-default.conf
+      - ${DATA_PATH}/data/php.ini:/usr/local/etc/php/php.ini
+      - ${DATA_PATH}/www:/var/www
+    environment:
+      VIRTUAL_HOST: ${DOMAINS}
+      LETSENCRYPT_HOST: ${DOMAINS}
+      LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
+      ENV: dev
+>>>>>>> a969ef985efc9209c9d496df0b5051c5eb4c4a12
 
   mysql:
     container_name: ${CONTAINER_NAME}.mysql
