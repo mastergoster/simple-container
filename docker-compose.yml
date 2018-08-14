@@ -2,7 +2,7 @@ version: '3'
 
 
 services:
-  php-dev:
+  php.dev:
     container_name: ${CONTAINER_NAME}
     restart: unless-stopped
     image: chialab/php-dev:7.2-apache
@@ -28,7 +28,7 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
 
-  networks:
-      default:
-         external:
-           name: ${NETWORK}
+networks:
+    default:
+       external:
+         name: ${NETWORK}
